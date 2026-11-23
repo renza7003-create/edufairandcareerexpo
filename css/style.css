@@ -1,0 +1,120 @@
+/* Edu Fair 2026 - Simple & Clean Beginner Style */
+body {
+    background: #fdfbf7;
+    color: #333;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    background: #0284c7;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 { font-size: 1.4rem; margin-bottom: 5px; }
+header p { font-size: 0.9rem; }
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    color: #0284c7;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+
+.btn-primary { background: #0284c7; }
+.btn-wa { background: #10b981; }
+.btn-amber { background: #f59e0b; }
+.btn-outline { background: #e2e8f0; color: #333; }
+
+.form-group { margin-bottom: 12px; }
+.form-label { display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 4px; }
+.form-control {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+textarea.form-control { height: 70px; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.85rem;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th { background: #f1f5f9; }
+.status-sent { background: #dcfce7 !important; }
+
+.dropzone {
+    border: 2px dashed #0284c7;
+    background: #f0f9ff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.c-box {
+    background: #0284c7;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.c-num { font-size: 1.2rem; font-weight: bold; }
+.c-lbl { font-size: 0.6rem; text-transform: uppercase; }
+
+footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 0.8rem;
+    color: #666;
+    border-top: 1px solid #ddd;
+    margin-top: 30px;
+}
