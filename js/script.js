@@ -1,11 +1,9 @@
-// ==========================================
-// CONFIGURATION
-// ==========================================
+// Edu Fair 2026 - Ultra-Compact Script
 const CONFIG = {
     SUPABASE_URL: "https://niclydymzisobxxyvnpd.supabase.co",
     SUPABASE_ANON_KEY: "sb_publishable_SeiNE3qEhs2YDtsBylXvwA_a9k9oqDV",
     PANITIA_WA: "62821144589280",
-    PRODUCTION_BASE_URL: "https://renza7003-create.github.io/edufairandcareerexpo/index.html" 
+    PRODUCTION_BASE_URL: "https://renza7003-create.github.io/edufairandcareerexpo/index.html"
 };
 
 let guests = [];
@@ -15,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('rsvpForm')) initInvitation();
 });
 
-// 1. Admin & WhatsApp Blast
+// Admin Panel
 function initAdmin() {
     const input = document.getElementById('fileInput');
     document.getElementById('fileDropzone').onclick = () => input.click();
@@ -24,14 +22,12 @@ function initAdmin() {
         reader.onload = (evt) => {
             const wb = XLSX.read(new Uint8Array(evt.target.result), { type: 'array' });
             const json = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], { defval: "" });
-            
             guests = json.map((r, i) => {
                 let wa = String(r.nomor_wa || r.wa || '').replace(/\D/g, '');
                 if (wa.startsWith('08')) wa = '62' + wa.substring(1);
                 else if (wa.startsWith('8')) wa = '62' + wa;
-                return { id: i + 1, nama: String(r.nama_tamu || r.nama || '').trim(), instansi: String(r.instansi || '').trim(), kategori: String(r.kategori || 'Perusahaan').trim(), wa: wa, sent: false };
+                return { id: i + 1, nama: String(r.nama_tamu || r.nama || '').trim(), instansi: String(r.instansi || '').trim(), kategori: String(r.kategori || 'Perusahaan').trim(), wa, sent: false };
             }).filter(g => g.nama);
-
             renderTable(guests);
             document.getElementById('tableSection').style.display = 'block';
             document.getElementById('totalCount').textContent = guests.length;
@@ -39,61 +35,34 @@ function initAdmin() {
         reader.readAsArrayBuffer(e.target.files[0]);
     };
 
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            const q = e.target.value.toLowerCase();
-            const filtered = guests.filter(g => 
-                g.nama.toLowerCase().includes(q) || 
-                g.instansi.toLowerCase().includes(q) || 
-                g.kategori.toLowerCase().includes(q) || 
-                g.wa.includes(q)
-            );
-            renderTable(filtered);
-        });
-    }
+    document.getElementById('searchInput')?.addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase();
+        renderTable(guests.filter(g => g.nama.toLowerCase().includes(q) || g.instansi.toLowerCase().includes(q) || g.wa.includes(q)));
+    });
 }
 
 function renderTable(data) {
     const tbody = document.getElementById('tableBody');
     if (!tbody) return;
-
-    if (!data.length) {
-        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:16px; color:#64748b;">Tidak ada data tamu.</td></tr>`;
-        return;
-    }
-
-    tbody.innerHTML = data.map((g, i) => `
+    tbody.innerHTML = data.length ? data.map((g, i) => `
         <tr class="${g.sent ? 'status-sent' : ''}">
-            <td>${i + 1}</td>
-            <td><b>${escapeHtml(g.nama)}</b></td>
-            <td>${escapeHtml(g.instansi)}</td>
-            <td>${escapeHtml(g.kategori)}</td>
-            <td>+${escapeHtml(g.wa)}</td>
-            <td>
-                <button class="btn btn-wa" style="padding:6px 12px; font-size:0.8rem; width:auto; display:inline-flex;" onclick="sendWA(${g.id})" id="btn-${g.id}">
-                    <i class="fab fa-whatsapp"></i> ${g.sent ? 'Terkirim ✓' : 'Kirim WA'}
-                </button>
-            </td>
+            <td>${i + 1}</td><td><b>${esc(g.nama)}</b></td><td>${esc(g.instansi)}</td><td>${esc(g.kategori)}</td><td>+${esc(g.wa)}</td>
+            <td><button class="btn btn-wa" style="padding:4px 8px;font-size:0.75rem;width:auto;" onclick="sendWA(${g.id})" id="btn-${g.id}">
+                <i class="fab fa-whatsapp"></i> ${g.sent ? 'Terkirim ✓' : 'Kirim WA'}
+            </button></td>
         </tr>
-    `).join('');
+    `).join('') : `<tr><td colspan="6" style="text-align:center;padding:12px;">Tidak ada data.</td></tr>`;
 }
 
 function sendWA(id) {
     const g = guests.find(x => x.id === id);
     if (!g) return;
-    
-    let baseUrl = CONFIG.PRODUCTION_BASE_URL;
-    if (!baseUrl || baseUrl.includes('your-')) {
-        baseUrl = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '/index.html');
-    }
-    
-    const link = `${baseUrl}?nama=${encodeURIComponent(g.nama)}&instansi=${encodeURIComponent(g.instansi)}&kategori=${encodeURIComponent(g.kategori)}`;
-    
+    let url = CONFIG.PRODUCTION_BASE_URL || (window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '/index.html'));
+    const link = `${url}?nama=${encodeURIComponent(g.nama)}&instansi=${encodeURIComponent(g.instansi)}&kategori=${encodeURIComponent(g.kategori)}`;
     const msg = `Yth. *${g.nama}*
 *${g.instansi}*
 
-Assalamu'alaikum Wr. Wb. Dengan hormat, kami mengundang Bapak/Ibu pimpinan instansi/mitra untuk hadir dan berpartisipasi dalam ajang pameran tahunan:
+Assalamu'alaikum Wr. Wb. Kami mengundang Bapak/Ibu dalam ajang:
 
 🎓 *EDU FAIR & CAREER EXPO 2026*
 "Connecting Competence to Future: Bekerja, Melanjutkan, Berwirausaha"
@@ -102,43 +71,24 @@ Assalamu'alaikum Wr. Wb. Dengan hormat, kami mengundang Bapak/Ibu pimpinan insta
 ⏰ *Waktu:* 07.00 – 14.00 WIB
 📍 *Lokasi:* SMKN 6 Kota Tangerang Selatan
 
-Informasi lengkap dapat diakses secara eksklusif melalui tautan personal berikut:
+Link undangan personal:
 ${link}
 
-Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu berkenan hadir memenuhi undangan ini.
-
-Atas perhatian, waktu, dan kerja sama yang baik, kami ucapkan terima kasih.
-
-*Hormat kami,*
-*Panitia Edu Fair & Career Expo 2026*`;
+Terima kasih.
+*Panitia Edu Fair 2026*`;
     
     g.sent = true;
     const btn = document.getElementById(`btn-${g.id}`);
-    if (btn) {
-        btn.innerHTML = `<i class="fab fa-whatsapp"></i> Terkirim ✓`;
-        btn.closest('tr').classList.add('status-sent');
-    }
+    if (btn) { btn.innerHTML = `<i class="fab fa-whatsapp"></i> Terkirim ✓`; btn.closest('tr').classList.add('status-sent'); }
     window.open(`https://wa.me/${g.wa}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
-// 2. Invitation & RSVP
+// Invitation & RSVP
 function initInvitation() {
     const p = new URLSearchParams(window.location.search);
-    const nama = p.get('nama');
-    const instansi = p.get('instansi');
-    const kategori = p.get('kategori');
-
-    if (nama) {
-        document.getElementById('guestName').textContent = nama;
-        document.getElementById('inputNama').value = nama;
-    }
-    if (instansi) {
-        document.getElementById('guestInstansi').textContent = instansi;
-        document.getElementById('inputInstansi').value = instansi;
-    }
-    if (kategori) {
-        document.getElementById('inputKategori').value = kategori;
-    }
+    if (p.get('nama')) { document.getElementById('guestName').textContent = p.get('nama'); document.getElementById('inputNama').value = p.get('nama'); }
+    if (p.get('instansi')) { document.getElementById('guestInstansi').textContent = p.get('instansi'); document.getElementById('inputInstansi').value = p.get('instansi'); }
+    if (p.get('kategori')) document.getElementById('inputKategori').value = p.get('kategori');
 
     // Countdown
     const target = new Date('2026-11-25T07:00:00').getTime();
@@ -152,60 +102,41 @@ function initInvitation() {
         }
     }, 1000);
 
-    // RSVP Form
-    const rsvpForm = document.getElementById('rsvpForm');
-    if (rsvpForm) {
-        rsvpForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const submitBtn = document.getElementById('submitBtn');
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Menyimpan...`;
-            }
+    // RSVP Submit
+    document.getElementById('rsvpForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        if (btn) { btn.disabled = true; btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Menyimpan...`; }
 
-            const data = {
-                nama_tamu: document.getElementById('inputNama').value.trim(),
-                instansi: document.getElementById('inputInstansi').value.trim(),
-                kategori: document.getElementById('inputKategori').value,
-                nomor_wa: document.getElementById('inputWa').value.trim(),
-                status_kehadiran: document.getElementById('inputStatus').value,
-                jumlah_tamu: parseInt(document.getElementById('inputJumlah').value) || 1,
-                pesan_ucapan: document.getElementById('inputPesan').value.trim()
-            };
+        const data = {
+            nama_tamu: document.getElementById('inputNama').value.trim(),
+            instansi: document.getElementById('inputInstansi').value.trim(),
+            kategori: document.getElementById('inputKategori').value,
+            nomor_wa: document.getElementById('inputWa').value.trim(),
+            status_kehadiran: document.getElementById('inputStatus').value,
+            jumlah_tamu: parseInt(document.getElementById('inputJumlah').value) || 1,
+            pesan_ucapan: document.getElementById('inputPesan').value.trim()
+        };
 
-            let savedToSupabase = false;
-            if (CONFIG.SUPABASE_URL && !CONFIG.SUPABASE_URL.includes("your-supabase")) {
-                try {
-                    const sb = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
-                    const { error } = await sb.from('rsvp_kehadiran').insert([data]);
-                    if (!error) savedToSupabase = true;
-                } catch (err) {
-                    console.error("Supabase Error:", err);
-                }
-            }
+        let saved = false;
+        if (CONFIG.SUPABASE_URL && !CONFIG.SUPABASE_URL.includes("your-supabase")) {
+            try {
+                const sb = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+                const { error } = await sb.from('rsvp_kehadiran').insert([data]);
+                if (!error) saved = true;
+            } catch (err) {}
+        }
 
-            alert(savedToSupabase ? 'RSVP berhasil disimpan ke database & diteruskan ke WA Panitia!' : 'RSVP diteruskan ke WhatsApp Panitia.');
-            
-            const cleanPanitiaWa = CONFIG.PANITIA_WA.replace(/\D/g, '');
-            const waText = `📝 *Konfirmasi RSVP Edu Fair 2026*
+        alert(saved ? 'RSVP berhasil disimpan ke database & diteruskan ke WA Panitia!' : 'RSVP diteruskan ke WhatsApp Panitia.');
+        window.open(`https://wa.me/${CONFIG.PANITIA_WA.replace(/\D/g, '')}?text=${encodeURIComponent(`📝 *RSVP Edu Fair 2026*
 
 Nama: *${data.nama_tamu}*
 Instansi: *${data.instansi}*
 Status: *${data.status_kehadiran}* (${data.jumlah_tamu} Orang)
-Pesan: "${data.pesan_ucapan || '-'}"`;
-            window.open(`https://wa.me/${cleanPanitiaWa}?text=${encodeURIComponent(waText)}`, '_blank');
-            
-            if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = `<i class="fas fa-paper-plane"></i> Konfirmasi Kehadiran`;
-            }
-            e.target.reset();
-        });
-    }
-}
-
-function escapeHtml(text) {
-    return String(text).replace(/[&<>"']/g, function(m) {
-        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+Pesan: "${data.pesan_ucapan || '-'}"`)}`, '_blank');
+        if (btn) { btn.disabled = false; btn.innerHTML = `<i class="fas fa-paper-plane"></i> Konfirmasi Kehadiran`; }
+        e.target.reset();
     });
 }
+
+function esc(t) { return String(t).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m])); }
