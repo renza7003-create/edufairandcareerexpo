@@ -3,135 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Digital — Edu Fair & Career Expo 2026</title>
+    <title>Undangan Edu Fair 2026</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css?v=3">
+    <link rel="stylesheet" href="css/style.css?v=4">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-
-    <div class="container">
-        <!-- Top Header Card -->
-        <div class="card header-card">
-            <span class="pill-badge">SMKN 6 KOTA TANGERANG SELATAN</span>
+    <div class="wrap">
+        <div class="card header">
+            <span class="badge">SMKN 6 Kota Tangerang Selatan</span>
             <h1>Edu Fair & Career Expo 2026</h1>
-            <p>"Connecting Competence to Future: Bekerja, Melanjutkan, Berwirausaha"</p>
+            <p>"Connecting Competence to Future"</p>
         </div>
 
-        <!-- Greeting Card -->
         <div class="card">
-            <span class="guest-label">KEPADA YTH. BAPAK/IBU / REKAN:</span>
-            <span class="guest-name" id="guestName">Bapak/Ibu Pimpinan Instansi / Mitra</span>
-            <span class="guest-instansi" id="guestInstansi">SMKN 6 Kota Tangerang Selatan</span>
-            
-            <hr class="divider">
-            <p class="welcome-text">
-                Assalamu'alaikum Wr. Wb. Dengan hormat, kami mengundang Bapak/Ibu pimpinan instansi/mitra untuk hadir dan berpartisipasi dalam ajang pameran tahunan SMKN 6 Kota Tangerang Selatan. Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu berkenan hadir memenuhi undangan ini.
-            </p>
+            <span class="guest-lbl">Kepada Yth. Bapak/Ibu / Rekan:</span>
+            <div class="guest-name" id="gName">Bapak/Ibu Pimpinan Instansi</div>
+            <div class="guest-inst" id="gInst">SMKN 6 Kota Tangerang Selatan</div>
+            <hr>
+            <p>Assalamu'alaikum Wr. Wb. Kami mengundang Bapak/Ibu untuk hadir dan berpartisipasi dalam ajang pameran tahunan Edu Fair & Career Expo 2026. Merupakan suatu kehormatan bagi kami atas kehadiran Bapak/Ibu.</p>
         </div>
 
-        <!-- Countdown Card -->
-        <div class="card" style="text-align: center;">
-            <div class="countdown-title">Menuju Hari Acara</div>
+        <div class="card" style="text-align:center;">
+            <p style="font-weight:bold;color:#334155;margin-bottom:6px;">Menuju Hari Acara</p>
             <div class="countdown">
-                <div class="c-box"><div class="c-num" id="days">00</div><div class="c-lbl">HARI</div></div>
-                <div class="c-box"><div class="c-num" id="hours">00</div><div class="c-lbl">JAM</div></div>
-                <div class="c-box"><div class="c-num" id="minutes">00</div><div class="c-lbl">MENIT</div></div>
-                <div class="c-box"><div class="c-num" id="seconds">00</div><div class="c-lbl">DETIK</div></div>
+                <div class="c-box"><div class="c-num" id="d">00</div><div class="c-lbl">Hari</div></div>
+                <div class="c-box"><div class="c-num" id="h">00</div><div class="c-lbl">Jam</div></div>
+                <div class="c-box"><div class="c-num" id="m">00</div><div class="c-lbl">Menit</div></div>
+                <div class="c-box"><div class="c-num" id="s">00</div><div class="c-lbl">Detik</div></div>
             </div>
         </div>
 
-        <!-- Details Grid -->
-        <div class="details-grid">
-            <div class="detail-card">
-                <i class="fas fa-calendar-alt"></i>
-                <div>
-                    <h4>Hari & Tanggal</h4>
-                    <p>Rabu, 25 Nov 2026</p>
-                </div>
-            </div>
-            <div class="detail-card">
-                <i class="fas fa-clock"></i>
-                <div>
-                    <h4>Waktu</h4>
-                    <p>07.00 – 14.00 WIB</p>
-                </div>
-            </div>
-            <div class="detail-card">
-                <i class="fas fa-map-marker-alt"></i>
-                <div>
-                    <h4>Lokasi</h4>
-                    <p>SMKN 6 Kota Tangsel</p>
-                </div>
-            </div>
+        <div class="grid-3" style="margin-bottom:12px;">
+            <div class="d-box"><i class="fas fa-calendar-alt"></i><h4>Tanggal</h4><p>25 Nov 2026</p></div>
+            <div class="d-box"><i class="fas fa-clock"></i><h4>Waktu</h4><p>07.00 - 14.00</p></div>
+            <div class="d-box"><i class="fas fa-map-marker-alt"></i><h4>Lokasi</h4><p>SMKN 6 Tangsel</p></div>
         </div>
 
-        <!-- Maps Card -->
         <div class="card">
-            <h2 class="section-title"><i class="fas fa-map-marked-alt"></i> Peta Lokasi Acara</h2>
-            <div class="map-container">
-                <iframe src="https://maps.google.com/maps?q=SMKN+6+Kota+Tangerang+Selatan&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
-            </div>
-            <a href="https://maps.google.com/?q=SMKN+6+Kota+Tangerang+Selatan" target="_blank" class="btn btn-primary">
-                <i class="fas fa-directions"></i> Buka Petunjuk Arah (Google Maps)
-            </a>
+            <p style="font-weight:bold;color:#0284c7;margin-bottom:6px;"><i class="fas fa-map-marked-alt"></i> Lokasi Acara</p>
+            <div class="map"><iframe src="https://maps.google.com/maps?q=SMKN+6+Kota+Tangerang+Selatan&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe></div>
+            <a href="https://maps.google.com/?q=SMKN+6+Kota+Tangerang+Selatan" target="_blank" class="btn btn-blue"><i class="fas fa-directions"></i> Buka Google Maps</a>
         </div>
 
-        <!-- RSVP Card -->
-        <div class="card" id="rsvpSection">
-            <h2 class="section-title"><i class="fas fa-clipboard-check"></i> Konfirmasi Kehadiran (RSVP)</h2>
-            <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 12px;">Mohon konfirmasi kehadiran Anda melalui formulir di bawah ini.</p>
-
+        <div class="card">
+            <p style="font-weight:bold;color:#0284c7;margin-bottom:6px;"><i class="fas fa-clipboard-check"></i> Konfirmasi Kehadiran (RSVP)</p>
             <form id="rsvpForm">
-                <div class="form-group">
-                    <label class="form-label">Nama Lengkap & Gelar *</label>
-                    <input type="text" id="inputNama" class="form-control" required placeholder="Nama lengkap...">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Asal Instansi / Perusahaan *</label>
-                    <input type="text" id="inputInstansi" class="form-control" required placeholder="Nama instansi...">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Kategori Tamu *</label>
-                    <select id="inputKategori" class="form-control" required>
-                        <option value="Perusahaan">Perusahaan / Mitra</option>
-                        <option value="Perguruan Tinggi">Perguruan Tinggi / Kampus</option>
-                        <option value="Pemerintahan">Pemerintahan / Dinas</option>
-                        <option value="UMKM/Wirausaha">UMKM / Wirausaha</option>
-                        <option value="Lainnya">Lainnya</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Nomor WhatsApp *</label>
-                    <input type="text" id="inputWa" class="form-control" required placeholder="0812xxxxxxxx">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Status Kehadiran *</label>
-                    <select id="inputStatus" class="form-control" required>
-                        <option value="Hadir">Hadir</option>
-                        <option value="Berhalangan / Diwakilkan">Berhalangan / Diwakilkan</option>
-                        <option value="Tidak Hadir">Tidak Hadir</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Jumlah Perwakilan Hadir</label>
-                    <input type="number" id="inputJumlah" class="form-control" min="1" value="1">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Pesan / Ucapan (Opsional)</label>
-                    <textarea id="inputPesan" class="form-control" placeholder="Tuliskan ucapan atau catatan untuk panitia..."></textarea>
-                </div>
-                <button type="submit" class="btn btn-amber" id="submitBtn" style="margin-top: 6px;">
-                    <i class="fas fa-paper-plane"></i> Konfirmasi Kehadiran
-                </button>
+                <div class="form-group"><label>Nama Lengkap</label><input type="text" id="inNama" required></div>
+                <div class="form-group"><label>Asal Instansi</label><input type="text" id="inInst" required></div>
+                <div class="form-group"><label>Kategori</label><select id="inKat"><option>Perusahaan</option><option>Perguruan Tinggi</option><option>Pemerintahan</option><option>Lainnya</option></select></div>
+                <div class="form-group"><label>Nomor WhatsApp</label><input type="text" id="inWa" placeholder="0812..." required></div>
+                <div class="form-group"><label>Status Kehadiran</label><select id="inStatus"><option>Hadir</option><option>Berhalangan</option><option>Tidak Hadir</option></select></div>
+                <div class="form-group"><label>Jumlah Hadir</label><input type="number" id="inJml" value="1" min="1"></div>
+                <div class="form-group"><label>Pesan / Ucapan</label><textarea id="inPesan" placeholder="Pesan singkat..."></textarea></div>
+                <button type="submit" class="btn btn-amber"><i class="fas fa-paper-plane"></i> Kirim RSVP & WhatsApp Panitia</button>
             </form>
         </div>
+        <footer>&copy; 2026 SMKN 6 Kota Tangerang Selatan</footer>
     </div>
-
-    <footer>
-        <p>&copy; 2026 SMKN 6 Kota Tangerang Selatan — Edu Fair & Career Expo</p>
-    </footer>
-
-    <script src="js/script.js?v=3"></script>
+    <script src="js/script.js?v=4"></script>
 </body>
 </html>
