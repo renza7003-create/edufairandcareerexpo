@@ -1,33 +1,42 @@
-/* Edu Fair 2026 - Ultra Clean & Concise */
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
-body { background: #f8fafc; color: #1e293b; padding: 12px; display: flex; justify-content: center; }
-.wrap { width: 100%; max-width: 580px; }
-.card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.03); }
-.header { background: linear-gradient(135deg, #0284c7, #0ea5e9); color: #fff; text-align: center; border: none; }
-.badge { background: rgba(255,255,255,0.25); font-size: 0.7rem; font-weight: bold; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; display: inline-block; margin-bottom: 6px; }
-h1 { font-size: 1.25rem; font-weight: bold; margin-bottom: 4px; }
-p { font-size: 0.85rem; line-height: 1.5; color: #475569; }
-.guest-lbl { font-size: 0.7rem; font-weight: bold; color: #64748b; text-transform: uppercase; text-align: center; display: block; }
-.guest-name { font-size: 1.2rem; font-weight: bold; color: #0284c7; text-align: center; margin: 2px 0; }
-.guest-inst { font-size: 0.85rem; font-weight: bold; color: #334155; text-align: center; margin-bottom: 10px; }
-hr { border: none; border-top: 1px solid #e2e8f0; margin: 10px 0; }
-.countdown { display: flex; justify-content: center; gap: 6px; margin-top: 8px; }
-.c-box { background: #0284c7; color: #fff; padding: 6px 8px; border-radius: 6px; text-align: center; min-width: 48px; }
-.c-num { font-size: 1.1rem; font-weight: bold; }
-.c-lbl { font-size: 0.55rem; text-transform: uppercase; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.d-box { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; text-align: center; }
-.d-box i { font-size: 1.1rem; color: #0284c7; margin-bottom: 4px; display: block; }
-.d-box h4 { font-size: 0.65rem; color: #64748b; text-transform: uppercase; }
-.d-box p { font-size: 0.78rem; font-weight: bold; color: #1e293b; }
-.map { width: 100%; height: 180px; border-radius: 6px; border: 1px solid #cbd5e1; margin: 8px 0; overflow: hidden; }
+/* Edu Fair 2026 - Clean & Responsive Style */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+body { background: #f8fafc; color: #1e293b; padding: 12px; }
+.wrap { max-width: 600px; margin: 0 auto; }
+.card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; margin-bottom: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.03); }
+.header { background: linear-gradient(135deg, #0284c7, #0ea5e9); color: #fff; text-align: center; border-radius: 12px; padding: 20px 16px; margin-bottom: 12px; }
+.header h1 { font-size: 1.3rem; margin: 6px 0 2px; }
+.header p { font-size: 0.8rem; opacity: 0.9; font-style: italic; }
+.badge { background: rgba(255,255,255,0.25); font-size: 0.68rem; padding: 3px 10px; border-radius: 20px; font-weight: bold; }
+.guest { text-align: center; margin-bottom: 12px; }
+.guest span { display: block; }
+.g-lbl { font-size: 0.7rem; color: #64748b; font-weight: bold; text-transform: uppercase; }
+.g-name { font-size: 1.25rem; color: #0284c7; font-weight: bold; margin: 2px 0; }
+.g-inst { font-size: 0.88rem; color: #334155; font-weight: bold; }
+hr { border: none; border-top: 1px solid #e2e8f0; margin: 12px 0; }
+.desc { font-size: 0.85rem; line-height: 1.5; color: #334155; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+.g-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 6px; text-align: center; }
+.g-box i { font-size: 1.2rem; color: #0284c7; margin-bottom: 4px; display: block; }
+.g-box h4 { font-size: 0.68rem; color: #64748b; text-transform: uppercase; margin-bottom: 2px; }
+.g-box p { font-size: 0.8rem; font-weight: bold; color: #1e293b; }
+.cd { display: flex; justify-content: center; gap: 6px; margin-top: 8px; }
+.cd-box { background: #0284c7; color: #fff; border-radius: 6px; padding: 6px 8px; min-width: 48px; text-align: center; }
+.cd-num { font-size: 1.1rem; font-weight: bold; }
+.cd-lbl { font-size: 0.55rem; text-transform: uppercase; }
+.map { width: 100%; height: 200px; border-radius: 8px; overflow: hidden; border: 1px solid #cbd5e1; margin-bottom: 10px; }
 .map iframe { width: 100%; height: 100%; border: 0; }
-.form-group { margin-bottom: 8px; }
-label { font-size: 0.78rem; font-weight: bold; color: #475569; display: block; margin-bottom: 2px; }
-input, select, textarea { width: 100%; padding: 8px 10px; font-size: 0.85rem; border: 1px solid #cbd5e1; border-radius: 6px; outline: none; }
-input:focus, select:focus, textarea:focus { border-color: #0284c7; box-shadow: 0 0 0 2px rgba(2,132,199,0.15); }
-textarea { height: 50px; resize: none; }
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: 100%; padding: 10px; font-size: 0.85rem; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; color: #fff; text-decoration: none; text-align: center; }
-.btn-blue { background: #0284c7; } .btn-blue:hover { background: #0369a1; }
-.btn-amber { background: #f59e0b; } .btn-amber:hover { background: #d97706; }
-footer { text-align: center; font-size: 0.72rem; color: #64748b; margin-top: 10px; }
+.form-group { margin-bottom: 10px; }
+.lbl { display: block; font-size: 0.8rem; font-weight: bold; color: #475569; margin-bottom: 3px; }
+.input { width: 100%; padding: 8px 10px; font-size: 0.85rem; border: 1px solid #cbd5e1; border-radius: 6px; outline: none; }
+.input:focus { border-color: #0284c7; }
+textarea.input { height: 60px; resize: none; }
+.btn { display: inline-block; width: 100%; padding: 10px; text-align: center; background: #f59e0b; color: #fff; font-weight: bold; border: none; border-radius: 6px; font-size: 0.88rem; cursor: pointer; text-decoration: none; }
+.btn:hover { background: #d97706; }
+.btn-blue { background: #0284c7; margin-top: 8px; }
+.btn-blue:hover { background: #0369a1; }
+footer { text-align: center; font-size: 0.75rem; color: #64748b; margin-top: 16px; }
+@media(max-width:480px) {
+  .grid { grid-template-columns: 1fr; }
+  .g-box { display: flex; align-items: center; text-align: left; padding: 10px 12px; gap: 10px; }
+  .g-box i { margin-bottom: 0; font-size: 1.3rem; }
+}

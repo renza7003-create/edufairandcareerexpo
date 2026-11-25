@@ -1,51 +1,53 @@
-const CFG = {
-    URL: "https://niclydymzisobxxyvnpd.supabase.co",
-    KEY: "sb_publishable_SeiNE3qEhs2YDtsBylXvwA_a9k9oqDV",
-    WA: "62821144589280"
+const CONFIG = {
+    SB_URL: "https://niclydymzisobxxyvnpd.supabase.co",
+    SB_KEY: "sb_publishable_SeiNE3qEhs2YDtsBylXvwA_a9k9oqDV",
+    PANITIA_WA: "62821144589280"
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    // URL Params parsing
     const p = new URLSearchParams(window.location.search);
-    const getDec = (k) => p.get(k) ? decodeURIComponent(p.get(k).replace(/\+/g, ' ')).trim() : '';
+    const decode = s => s ? decodeURIComponent(s.replace(/\+/g, ' ')).trim() : '';
     
-    if (p.get('nama')) { document.getElementById('gName').textContent = getDec('nama'); document.getElementById('inNama').value = getDec('nama'); }
-    if (p.get('instansi')) { document.getElementById('gInst').textContent = getDec('instansi'); document.getElementById('inInst').value = getDec('instansi'); }
-    if (p.get('kategori')) { document.getElementById('inKat').value = getDec('kategori'); }
+    if(p.get('nama')) { document.getElementById('gName').textContent = decode(p.get('nama')); document.getElementById('iNama').value = decode(p.get('nama')); }
+    if(p.get('instansi')) { document.getElementById('gInst').textContent = decode(p.get('instansi')); document.getElementById('iInst').value = decode(p.get('instansi')); }
+    if(p.get('kategori')) { document.getElementById('iKat').value = decode(p.get('kategori')); }
 
     // Countdown
-    const t = new Date('2026-11-25T07:00:00').getTime();
+    const target = new Date('2026-11-25T07:00:00').getTime();
     setInterval(() => {
-        const diff = t - Date.now();
-        if (diff > 0) {
-            document.getElementById('d').textContent = String(Math.floor(diff / 86400000)).padStart(2, '0');
-            document.getElementById('h').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
-            document.getElementById('m').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
-            document.getElementById('s').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+        const diff = target - Date.now();
+        if(diff > 0) {
+            document.getElementById('d').textContent = String(Math.floor(diff / 86400000)).padStart(2,'0');
+            document.getElementById('h').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+            document.getElementById('m').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+            document.getElementById('s').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
         }
     }, 1000);
 
-    // RSVP
+    // RSVP Submit
     document.getElementById('rsvpForm')?.addEventListener('submit', async (e) => {
         e.preventDefault();
         const data = {
-            nama_tamu: document.getElementById('inNama').value,
-            instansi: document.getElementById('inInst').value,
-            kategori: document.getElementById('inKat').value,
-            nomor_wa: document.getElementById('inWa').value,
-            status_kehadiran: document.getElementById('inStatus').value,
-            jumlah_tamu: parseInt(document.getElementById('inJml').value) || 1,
-            pesan_ucapan: document.getElementById('inPesan').value
+            nama_tamu: document.getElementById('iNama').value,
+            instansi: document.getElementById('iInst').value,
+            kategori: document.getElementById('iKat').value,
+            nomor_wa: document.getElementById('iWa').value,
+            status_kehadiran: document.getElementById('iStat').value,
+            jumlah_tamu: parseInt(document.getElementById('iJml').value) || 1,
+            pesan_ucapan: document.getElementById('iPesan').value
         };
-        
-        if (CFG.URL && !CFG.URL.includes("your-supabase")) {
-            try {
-                const sb = window.supabase.createClient(CFG.URL, CFG.KEY);
-                await sb.from('rsvp_kehadiran').insert([data]);
-            } catch(err) {}
-        }
-        
-        alert('RSVP berhasil dicatat! Mengalihkan ke WhatsApp Panitia...');
-        window.open(`https://wa.me/${CFG.WA}?text=${encodeURIComponent(`📝 *RSVP Edu Fair 2026*\nNama: *${data.nama_tamu}*\nInstansi: *${data.instansi}*\nStatus: *${data.status_kehadiran}* (${data.jumlah_tamu} Orang)\nPesan: "${data.pesan_ucapan || '-'}"`)}`, '_blank');
+
+        let ok = false;
+        try {
+            const sb = window.supabase.createClient(CONFIG.SB_URL, CONFIG.SB_KEY);
+            const { error } = await sb.from('rsvp_kehadiran').insert([data]);
+            if(!error) ok = true;
+        } catch(err) {}
+
+        alert(ok ? 'RSVP berhasil disimpan & diteruskan ke Panitia!' : 'RSVP diteruskan ke WhatsApp Panitia.');
+        const msg = `📝 *RSVP Edu Fair 2026*\nNama: *${data.nama_tamu}*\nInstansi: *${data.instansi}*\nStatus: *${data.status_kehadiran}* (${data.jumlah_tamu} orang)\nPesan: "${data.pesan_ucapan || '-'}"`;
+        window.open(`https://wa.me/${CONFIG.PANITIA_WA}?text=${encodeURIComponent(msg)}`, '_blank');
         e.target.reset();
     });
 });

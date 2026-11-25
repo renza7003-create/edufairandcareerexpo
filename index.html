@@ -1,66 +1,85 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Edu Fair 2026</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css?v=4">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Edu Fair 2026</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css?v=4">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-    <div class="wrap">
-        <div class="card header">
-            <span class="badge">SMKN 6 Kota Tangerang Selatan</span>
-            <h1>Edu Fair & Career Expo 2026</h1>
-            <p>"Connecting Competence to Future"</p>
-        </div>
+<div class="wrap">
+  <div class="header">
+    <span class="badge">SMKN 6 KOTA TANGERANG SELATAN</span>
+    <h1>Edu Fair & Career Expo 2026</h1>
+    <p>"Connecting Competence to Future: Bekerja, Melanjutkan, Berwirausaha"</p>
+  </div>
 
-        <div class="card">
-            <span class="guest-lbl">Kepada Yth. Bapak/Ibu / Rekan:</span>
-            <div class="guest-name" id="gName">Bapak/Ibu Pimpinan Instansi</div>
-            <div class="guest-inst" id="gInst">SMKN 6 Kota Tangerang Selatan</div>
-            <hr>
-            <p>Assalamu'alaikum Wr. Wb. Kami mengundang Bapak/Ibu untuk hadir dan berpartisipasi dalam ajang pameran tahunan Edu Fair & Career Expo 2026. Merupakan suatu kehormatan bagi kami atas kehadiran Bapak/Ibu.</p>
-        </div>
+  <div class="card guest">
+    <span class="g-lbl">Kepada Yth. Bapak/Ibu / Rekan:</span>
+    <span class="g-name" id="gName">Bapak/Ibu Pimpinan Instansi</span>
+    <span class="g-inst" id="gInst">SMKN 6 Kota Tangerang Selatan</span>
+    <hr>
+    <p class="desc">Assalamu'alaikum Wr. Wb. Kami mengundang Bapak/Ibu pimpinan instansi/mitra untuk hadir dalam ajang pameran tahunan SMKN 6 Tangerang Selatan. Merupakan suatu kehormatan bagi kami atas kehadiran Bapak/Ibu.</p>
+  </div>
 
-        <div class="card" style="text-align:center;">
-            <p style="font-weight:bold;color:#334155;margin-bottom:6px;">Menuju Hari Acara</p>
-            <div class="countdown">
-                <div class="c-box"><div class="c-num" id="d">00</div><div class="c-lbl">Hari</div></div>
-                <div class="c-box"><div class="c-num" id="h">00</div><div class="c-lbl">Jam</div></div>
-                <div class="c-box"><div class="c-num" id="m">00</div><div class="c-lbl">Menit</div></div>
-                <div class="c-box"><div class="c-num" id="s">00</div><div class="c-lbl">Detik</div></div>
-            </div>
-        </div>
-
-        <div class="grid-3" style="margin-bottom:12px;">
-            <div class="d-box"><i class="fas fa-calendar-alt"></i><h4>Tanggal</h4><p>25 Nov 2026</p></div>
-            <div class="d-box"><i class="fas fa-clock"></i><h4>Waktu</h4><p>07.00 - 14.00</p></div>
-            <div class="d-box"><i class="fas fa-map-marker-alt"></i><h4>Lokasi</h4><p>SMKN 6 Tangsel</p></div>
-        </div>
-
-        <div class="card">
-            <p style="font-weight:bold;color:#0284c7;margin-bottom:6px;"><i class="fas fa-map-marked-alt"></i> Lokasi Acara</p>
-            <div class="map"><iframe src="https://maps.google.com/maps?q=SMKN+6+Kota+Tangerang+Selatan&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe></div>
-            <a href="https://maps.google.com/?q=SMKN+6+Kota+Tangerang+Selatan" target="_blank" class="btn btn-blue"><i class="fas fa-directions"></i> Buka Google Maps</a>
-        </div>
-
-        <div class="card">
-            <p style="font-weight:bold;color:#0284c7;margin-bottom:6px;"><i class="fas fa-clipboard-check"></i> Konfirmasi Kehadiran (RSVP)</p>
-            <form id="rsvpForm">
-                <div class="form-group"><label>Nama Lengkap</label><input type="text" id="inNama" required></div>
-                <div class="form-group"><label>Asal Instansi</label><input type="text" id="inInst" required></div>
-                <div class="form-group"><label>Kategori</label><select id="inKat"><option>Perusahaan</option><option>Perguruan Tinggi</option><option>Pemerintahan</option><option>Lainnya</option></select></div>
-                <div class="form-group"><label>Nomor WhatsApp</label><input type="text" id="inWa" placeholder="0812..." required></div>
-                <div class="form-group"><label>Status Kehadiran</label><select id="inStatus"><option>Hadir</option><option>Berhalangan</option><option>Tidak Hadir</option></select></div>
-                <div class="form-group"><label>Jumlah Hadir</label><input type="number" id="inJml" value="1" min="1"></div>
-                <div class="form-group"><label>Pesan / Ucapan</label><textarea id="inPesan" placeholder="Pesan singkat..."></textarea></div>
-                <button type="submit" class="btn btn-amber"><i class="fas fa-paper-plane"></i> Kirim RSVP & WhatsApp Panitia</button>
-            </form>
-        </div>
-        <footer>&copy; 2026 SMKN 6 Kota Tangerang Selatan</footer>
+  <div class="card" style="text-align:center;">
+    <span class="g-lbl" style="margin-bottom:6px;">Menuju Hari Acara</span>
+    <div class="cd">
+      <div class="cd-box"><div class="cd-num" id="d">00</div><div class="cd-lbl">Hari</div></div>
+      <div class="cd-box"><div class="cd-num" id="h">00</div><div class="cd-lbl">Jam</div></div>
+      <div class="cd-box"><div class="cd-num" id="m">00</div><div class="cd-lbl">Menit</div></div>
+      <div class="cd-box"><div class="cd-num" id="s">00</div><div class="cd-lbl">Detik</div></div>
     </div>
-    <script src="js/script.js?v=4"></script>
+  </div>
+
+  <div class="grid">
+    <div class="g-box">
+      <i class="fas fa-calendar-alt"></i>
+      <div><h4>Tanggal</h4><p>25 Nov 2026</p></div>
+    </div>
+    <div class="g-box">
+      <i class="fas fa-clock"></i>
+      <div><h4>Waktu</h4><p>07.00 - 14.00</p></div>
+    </div>
+    <div class="g-box">
+      <i class="fas fa-map-marker-alt"></i>
+      <div><h4>Lokasi</h4><p>SMKN 6 Tangsel</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="g-lbl" style="margin-bottom:8px; display:block;"><i class="fas fa-map-marked-alt"></i> Lokasi Acara</span>
+    <div class="map">
+      <iframe src="https://maps.google.com/maps?q=SMKN+6+Kota+Tangerang+Selatan&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+    </div>
+    <a href="https://maps.google.com/?q=SMKN+6+Kota+Tangerang+Selatan" target="_blank" class="btn btn-blue">
+      <i class="fas fa-directions"></i> Buka Petunjuk Arah (Google Maps)
+    </a>
+  </div>
+
+  <div class="card">
+    <span class="g-lbl" style="margin-bottom:8px; display:block;"><i class="fas fa-clipboard-check"></i> Konfirmasi Kehadiran (RSVP)</span>
+    <form id="rsvpForm">
+      <div class="form-group"><label class="lbl">Nama Lengkap</label><input type="text" id="iNama" class="input" required></div>
+      <div class="form-group"><label class="lbl">Instansi / Perusahaan</label><input type="text" id="iInst" class="input" required></div>
+      <div class="form-group"><label class="lbl">Kategori</label>
+        <select id="iKat" class="input"><option>Perusahaan</option><option>Perguruan Tinggi</option><option>Pemerintahan</option><option>UMKM/Wirausaha</option><option>Lainnya</option></select>
+      </div>
+      <div class="form-group"><label class="lbl">Nomor WhatsApp</label><input type="text" id="iWa" class="input" required placeholder="0812..."></div>
+      <div class="form-group"><label class="lbl">Status Kehadiran</label>
+        <select id="iStat" class="input"><option>Hadir</option><option>Berhalangan / Diwakilkan</option><option>Tidak Hadir</option></select>
+      </div>
+      <div class="form-group"><label class="lbl">Jumlah Hadir</label><input type="number" id="iJml" class="input" value="1" min="1"></div>
+      <div class="form-group"><label class="lbl">Pesan / Ucapan</label><textarea id="iPesan" class="input" placeholder="Tulis pesan..."></textarea></div>
+      <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Kirim RSVP</button>
+    </form>
+  </div>
+
+  <footer>&copy; 2026 SMKN 6 Kota Tangerang Selatan</footer>
+</div>
+
+<script src="js/script.js?v=4"></script>
 </body>
 </html>
