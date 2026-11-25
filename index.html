@@ -10,32 +10,34 @@
 </head>
 <body>
 
-    <header>
-        <h1>EDU FAIR & CAREER EXPO 2026</h1>
-        <p>SMKN 6 Kota Tangerang Selatan</p>
-    </header>
-
     <div class="container">
-        <!-- Hero Card -->
+        <!-- Top Header Card -->
+        <div class="card header-card">
+            <span class="pill-badge">SMKN 6 KOTA TANGERANG SELATAN</span>
+            <h1>Edu Fair & Career Expo 2026</h1>
+            <p>"Connecting Competence to Future: Bekerja, Melanjutkan, Berwirausaha"</p>
+        </div>
+
+        <!-- Greeting Card -->
         <div class="card">
-            <span class="guest-label">Kepada Yth. Bapak/Ibu / Pimpinan</span>
-            <span class="guest-name" id="guestName">Bapak/Ibu Pimpinan Tamu</span>
-            <span class="guest-instansi" id="guestInstansi">Mitra Instansi / Perusahaan</span>
+            <span class="guest-label">KEPADA YTH. BAPAK/IBU / REKAN:</span>
+            <span class="guest-name" id="guestName">Bapak/Ibu Pimpinan Instansi / Mitra</span>
+            <span class="guest-instansi" id="guestInstansi">SMKN 6 Kota Tangerang Selatan</span>
             
-            <p class="event-tagline">
-                "Connecting Competence to Future: Bekerja, Melanjutkan, Berwirausaha"
-            </p>
             <hr class="divider">
             <p class="welcome-text">
                 Assalamu'alaikum Wr. Wb. Dengan hormat, kami mengundang Bapak/Ibu pimpinan instansi/mitra untuk hadir dan berpartisipasi dalam ajang pameran tahunan SMKN 6 Kota Tangerang Selatan. Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu berkenan hadir memenuhi undangan ini.
             </p>
+        </div>
 
-            <!-- Countdown -->
+        <!-- Countdown Card -->
+        <div class="card" style="text-align: center;">
+            <div class="countdown-title">Menuju Hari Acara</div>
             <div class="countdown">
-                <div class="c-box"><div class="c-num" id="days">00</div><div class="c-lbl">Hari</div></div>
-                <div class="c-box"><div class="c-num" id="hours">00</div><div class="c-lbl">Jam</div></div>
-                <div class="c-box"><div class="c-num" id="minutes">00</div><div class="c-lbl">Menit</div></div>
-                <div class="c-box"><div class="c-num" id="seconds">00</div><div class="c-lbl">Detik</div></div>
+                <div class="c-box"><div class="c-num" id="days">00</div><div class="c-lbl">HARI</div></div>
+                <div class="c-box"><div class="c-num" id="hours">00</div><div class="c-lbl">JAM</div></div>
+                <div class="c-box"><div class="c-num" id="minutes">00</div><div class="c-lbl">MENIT</div></div>
+                <div class="c-box"><div class="c-num" id="seconds">00</div><div class="c-lbl">DETIK</div></div>
             </div>
         </div>
 
@@ -60,7 +62,7 @@
 
         <!-- Maps Card -->
         <div class="card">
-            <h2 class="card-title"><i class="fas fa-map-marked-alt"></i> Peta Lokasi Acara</h2>
+            <h2 class="section-title"><i class="fas fa-map-marked-alt"></i> Peta Lokasi Acara</h2>
             <div class="map-container">
                 <iframe src="https://maps.google.com/maps?q=SMKN+6+Kota+Tangerang+Selatan&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
             </div>
@@ -71,8 +73,8 @@
 
         <!-- RSVP Card -->
         <div class="card" id="rsvpSection">
-            <h2 class="card-title"><i class="fas fa-clipboard-check"></i> Konfirmasi Kehadiran (RSVP)</h2>
-            <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 12px;">Mohon konfirmasi kehadiran Anda melalui formulir di bawah ini.</p>
+            <h2 class="section-title"><i class="fas fa-clipboard-check"></i> Konfirmasi Kehadiran (RSVP)</h2>
+            <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 12px;">Mohon konfirmasi kehadiran Anda melalui formulir di bawah ini.</p>
 
             <form id="rsvpForm">
                 <div class="form-group">
