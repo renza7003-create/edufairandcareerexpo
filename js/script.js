@@ -1,4 +1,4 @@
-// Edu Fair 2026 - Ultra-Compact Script
+// Edu Fair 2026 - Master Script
 const CONFIG = {
     SUPABASE_URL: "https://niclydymzisobxxyvnpd.supabase.co",
     SUPABASE_ANON_KEY: "sb_publishable_SeiNE3qEhs2YDtsBylXvwA_a9k9oqDV",
@@ -47,11 +47,11 @@ function renderTable(data) {
     tbody.innerHTML = data.length ? data.map((g, i) => `
         <tr class="${g.sent ? 'status-sent' : ''}">
             <td>${i + 1}</td><td><b>${esc(g.nama)}</b></td><td>${esc(g.instansi)}</td><td>${esc(g.kategori)}</td><td>+${esc(g.wa)}</td>
-            <td><button class="btn btn-wa" style="padding:4px 8px;font-size:0.75rem;width:auto;" onclick="sendWA(${g.id})" id="btn-${g.id}">
+            <td><button class="btn btn-wa" style="padding:6px 12px;font-size:0.8rem;width:auto;display:inline-flex;" onclick="sendWA(${g.id})" id="btn-${g.id}">
                 <i class="fab fa-whatsapp"></i> ${g.sent ? 'Terkirim ✓' : 'Kirim WA'}
             </button></td>
         </tr>
-    `).join('') : `<tr><td colspan="6" style="text-align:center;padding:12px;">Tidak ada data.</td></tr>`;
+    `).join('') : `<tr><td colspan="6" style="text-align:center;padding:16px;color:#64748b;">Tidak ada data.</td></tr>`;
 }
 
 function sendWA(id) {
@@ -84,11 +84,34 @@ Terima kasih.
 }
 
 // Invitation & RSVP
+function decodeParam(str) {
+    if (!str) return '';
+    try {
+        return decodeURIComponent(str.replace(/\+/g, ' ')).trim();
+    } catch (e) {
+        return str.trim();
+    }
+}
+
 function initInvitation() {
     const p = new URLSearchParams(window.location.search);
-    if (p.get('nama')) { document.getElementById('guestName').textContent = p.get('nama'); document.getElementById('inputNama').value = p.get('nama'); }
-    if (p.get('instansi')) { document.getElementById('guestInstansi').textContent = p.get('instansi'); document.getElementById('inputInstansi').value = p.get('instansi'); }
-    if (p.get('kategori')) document.getElementById('inputKategori').value = p.get('kategori');
+    const rawNama = p.get('nama');
+    const rawInstansi = p.get('instansi');
+    const rawKategori = p.get('kategori');
+
+    if (rawNama) {
+        const nama = decodeParam(rawNama);
+        document.getElementById('guestName').textContent = nama;
+        document.getElementById('inputNama').value = nama;
+    }
+    if (rawInstansi) {
+        const instansi = decodeParam(rawInstansi);
+        document.getElementById('guestInstansi').textContent = instansi;
+        document.getElementById('inputInstansi').value = instansi;
+    }
+    if (rawKategori) {
+        document.getElementById('inputKategori').value = decodeParam(rawKategori);
+    }
 
     // Countdown
     const target = new Date('2026-11-25T07:00:00').getTime();
