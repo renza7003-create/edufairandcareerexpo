@@ -1,17 +1,11 @@
 // ==========================================
-// CONFIGURATION (Ganti dengan data Supabase & Link GitHub Anda)
+// CONFIGURATION
 // ==========================================
 const CONFIG = {
-    // Kosongkan atau isi URL Supabase Anda setelah membuat project di supabase.com
-    SUPABASE_URL: "https://your-supabase-project.supabase.co",
-    SUPABASE_ANON_KEY: "your-supabase-anon-key-here",
-    
-    // Nomor WhatsApp Panitia untuk menerima konfirmasi RSVP (Format: 628...)
-    PANITIA_WA: "6281234567890",
-    
-    // URL Deployment GitHub Pages (Ganti dengan link GitHub Pages Anda setelah deploy)
-    // Contoh: "https://nurrahmadind.github.io/edufairandcareerexpo/index.html"
-    PRODUCTION_BASE_URL: "" 
+    SUPABASE_URL: "https://niclydymzisobxxyvnpd.supabase.co",
+    SUPABASE_ANON_KEY: "sb_publishable_SeiNE3qEhs2YDtsBylXvwA_a9k9oqDV",
+    PANITIA_WA: "62821144589280",
+    PRODUCTION_BASE_URL: "https://renza7003-create.github.io/edufairandcareerexpo/index.html" 
 };
 
 let guests = [];
@@ -35,7 +29,7 @@ function initAdmin() {
                 let wa = String(r.nomor_wa || r.wa || '').replace(/\D/g, '');
                 if (wa.startsWith('08')) wa = '62' + wa.substring(1);
                 else if (wa.startsWith('8')) wa = '62' + wa;
-                return { id: i + 1, nama: r.nama_tamu || r.nama || '', instansi: r.instansi || '', kategori: r.kategori || 'Perusahaan', wa: wa, sent: false };
+                return { id: i + 1, nama: String(r.nama_tamu || r.nama || '').trim(), instansi: String(r.instansi || '').trim(), kategori: String(r.kategori || 'Perusahaan').trim(), wa: wa, sent: false };
             }).filter(g => g.nama);
 
             renderTable(guests);
@@ -44,17 +38,43 @@ function initAdmin() {
         };
         reader.readAsArrayBuffer(e.target.files[0]);
     };
+
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const q = e.target.value.toLowerCase();
+            const filtered = guests.filter(g => 
+                g.nama.toLowerCase().includes(q) || 
+                g.instansi.toLowerCase().includes(q) || 
+                g.kategori.toLowerCase().includes(q) || 
+                g.wa.includes(q)
+            );
+            renderTable(filtered);
+        });
+    }
 }
 
 function renderTable(data) {
-    document.getElementById('tableBody').innerHTML = data.map((g, i) => `
+    const tbody = document.getElementById('tableBody');
+    if (!tbody) return;
+
+    if (!data.length) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:16px; color:#64748b;">Tidak ada data tamu.</td></tr>`;
+        return;
+    }
+
+    tbody.innerHTML = data.map((g, i) => `
         <tr class="${g.sent ? 'status-sent' : ''}">
             <td>${i + 1}</td>
-            <td><b>${g.nama}</b></td>
-            <td>${g.instansi}</td>
-            <td>${g.kategori}</td>
-            <td>+${g.wa}</td>
-            <td><button class="btn btn-wa" style="padding:4px 8px;font-size:0.8rem;" onclick="sendWA(${g.id})" id="btn-${g.id}">Kirim WA</button></td>
+            <td><b>${escapeHtml(g.nama)}</b></td>
+            <td>${escapeHtml(g.instansi)}</td>
+            <td>${escapeHtml(g.kategori)}</td>
+            <td>+${escapeHtml(g.wa)}</td>
+            <td>
+                <button class="btn btn-wa" style="padding:6px 12px; font-size:0.8rem; width:auto; display:inline-flex;" onclick="sendWA(${g.id})" id="btn-${g.id}">
+                    <i class="fab fa-whatsapp"></i> ${g.sent ? 'Terkirim ✓' : 'Kirim WA'}
+                </button>
+            </td>
         </tr>
     `).join('');
 }
@@ -63,7 +83,6 @@ function sendWA(id) {
     const g = guests.find(x => x.id === id);
     if (!g) return;
     
-    // Gunakan PRODUCTION_BASE_URL jika sudah di-deploy, jika kosong gunakan window.location
     let baseUrl = CONFIG.PRODUCTION_BASE_URL;
     if (!baseUrl || baseUrl.includes('your-')) {
         baseUrl = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '/index.html');
@@ -94,58 +113,99 @@ Atas perhatian, waktu, dan kerja sama yang baik, kami ucapkan terima kasih.
 *Panitia Edu Fair & Career Expo 2026*`;
     
     g.sent = true;
-    document.getElementById(`btn-${g.id}`).innerText = "Terkirim ✓";
-    document.getElementById(`btn-${g.id}`).closest('tr').className = "status-sent";
+    const btn = document.getElementById(`btn-${g.id}`);
+    if (btn) {
+        btn.innerHTML = `<i class="fab fa-whatsapp"></i> Terkirim ✓`;
+        btn.closest('tr').classList.add('status-sent');
+    }
     window.open(`https://wa.me/${g.wa}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 // 2. Invitation & RSVP
 function initInvitation() {
     const p = new URLSearchParams(window.location.search);
-    if (p.get('nama')) { document.getElementById('guestName').textContent = p.get('nama'); document.getElementById('inputNama').value = p.get('nama'); }
-    if (p.get('instansi')) { document.getElementById('guestInstansi').textContent = p.get('instansi'); document.getElementById('inputInstansi').value = p.get('instansi'); }
-    if (p.get('kategori')) document.getElementById('inputKategori').value = p.get('kategori');
+    const nama = p.get('nama');
+    const instansi = p.get('instansi');
+    const kategori = p.get('kategori');
+
+    if (nama) {
+        document.getElementById('guestName').textContent = nama;
+        document.getElementById('inputNama').value = nama;
+    }
+    if (instansi) {
+        document.getElementById('guestInstansi').textContent = instansi;
+        document.getElementById('inputInstansi').value = instansi;
+    }
+    if (kategori) {
+        document.getElementById('inputKategori').value = kategori;
+    }
 
     // Countdown
     const target = new Date('2026-11-25T07:00:00').getTime();
     setInterval(() => {
         const d = target - Date.now();
         if (d > 0) {
-            document.getElementById('days').textContent = Math.floor(d / 86400000);
-            document.getElementById('hours').textContent = Math.floor((d % 86400000) / 3600000);
-            document.getElementById('minutes').textContent = Math.floor((d % 3600000) / 60000);
-            document.getElementById('seconds').textContent = Math.floor((d % 60000) / 1000);
+            document.getElementById('days').textContent = String(Math.floor(d / 86400000)).padStart(2, '0');
+            document.getElementById('hours').textContent = String(Math.floor((d % 86400000) / 3600000)).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(Math.floor((d % 3600000) / 60000)).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(Math.floor((d % 60000) / 1000)).padStart(2, '0');
         }
     }, 1000);
 
-    // RSVP
-    document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const data = {
-            nama_tamu: document.getElementById('inputNama').value,
-            instansi: document.getElementById('inputInstansi').value,
-            kategori: document.getElementById('inputKategori').value,
-            nomor_wa: document.getElementById('inputWa').value,
-            status_kehadiran: document.getElementById('inputStatus').value,
-            jumlah_tamu: parseInt(document.getElementById('inputJumlah').value) || 1,
-            pesan_ucapan: document.getElementById('inputPesan').value
-        };
-
-        let savedToSupabase = false;
-        if (CONFIG.SB_URL && !CONFIG.SB_URL.includes("your-supabase")) {
-            try {
-                const sb = window.supabase.createClient(CONFIG.SB_URL, CONFIG.SB_KEY);
-                const { error } = await sb.from('rsvp_kehadiran').insert([data]);
-                if (!error) savedToSupabase = true;
-            } catch (err) {
-                console.error("Supabase Error:", err);
+    // RSVP Form
+    const rsvpForm = document.getElementById('rsvpForm');
+    if (rsvpForm) {
+        rsvpForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Menyimpan...`;
             }
-        }
 
-        alert(savedToSupabase ? 'RSVP berhasil disimpan ke database & diteruskan ke WA Panitia!' : 'RSVP diteruskan ke WhatsApp Panitia.');
-        
-        const waText = `📝 *Konfirmasi RSVP Edu Fair 2026*\n\nNama: *${data.nama_tamu}*\nInstansi: *${data.instansi}*\nStatus: *${data.status_kehadiran}* (${data.jumlah_tamu} Orang)\nPesan: "${data.pesan_ucapan || '-'}"`;
-        window.open(`https://wa.me/${CONFIG.PANITIA_WA}?text=${encodeURIComponent(waText)}`, '_blank');
-        e.target.reset();
+            const data = {
+                nama_tamu: document.getElementById('inputNama').value.trim(),
+                instansi: document.getElementById('inputInstansi').value.trim(),
+                kategori: document.getElementById('inputKategori').value,
+                nomor_wa: document.getElementById('inputWa').value.trim(),
+                status_kehadiran: document.getElementById('inputStatus').value,
+                jumlah_tamu: parseInt(document.getElementById('inputJumlah').value) || 1,
+                pesan_ucapan: document.getElementById('inputPesan').value.trim()
+            };
+
+            let savedToSupabase = false;
+            if (CONFIG.SUPABASE_URL && !CONFIG.SUPABASE_URL.includes("your-supabase")) {
+                try {
+                    const sb = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+                    const { error } = await sb.from('rsvp_kehadiran').insert([data]);
+                    if (!error) savedToSupabase = true;
+                } catch (err) {
+                    console.error("Supabase Error:", err);
+                }
+            }
+
+            alert(savedToSupabase ? 'RSVP berhasil disimpan ke database & diteruskan ke WA Panitia!' : 'RSVP diteruskan ke WhatsApp Panitia.');
+            
+            const cleanPanitiaWa = CONFIG.PANITIA_WA.replace(/\D/g, '');
+            const waText = `📝 *Konfirmasi RSVP Edu Fair 2026*
+
+Nama: *${data.nama_tamu}*
+Instansi: *${data.instansi}*
+Status: *${data.status_kehadiran}* (${data.jumlah_tamu} Orang)
+Pesan: "${data.pesan_ucapan || '-'}"`;
+            window.open(`https://wa.me/${cleanPanitiaWa}?text=${encodeURIComponent(waText)}`, '_blank');
+            
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fas fa-paper-plane"></i> Konfirmasi Kehadiran`;
+            }
+            e.target.reset();
+        });
+    }
+}
+
+function escapeHtml(text) {
+    return String(text).replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
     });
 }

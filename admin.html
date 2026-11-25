@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Admin & WhatsApp Blast — Edu Fair 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -12,26 +11,26 @@
 <body>
 
     <header>
-        <h1>Panel Admin & WhatsApp Blast</h1>
+        <h1>PANEL ADMIN & WHATSAPP BLAST</h1>
         <p>Edu Fair & Career Expo 2026 — SMKN 6 Kota Tangerang Selatan</p>
     </header>
 
     <div class="container">
         <!-- Upload Card -->
         <div class="card">
-            <h2><i class="fas fa-file-excel" style="color: var(--emerald);"></i> Unggah Data Tamu</h2>
-            <p style="color: var(--text-sec); font-size: 0.9rem; margin-bottom: 16px;">Unggah file Excel (.xlsx/.xls) atau CSV (.csv) berisi daftar tamu.</p>
+            <h2 class="card-title"><i class="fas fa-file-excel" style="color: #10b981;"></i> Unggah Data Tamu</h2>
+            <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 14px;">Unggah file Excel (.xlsx / .xls) atau CSV (.csv) berisi daftar data tamu.</p>
             
             <div class="dropzone" id="fileDropzone">
-                <i class="fas fa-cloud-upload-alt" style="font-size: 40px; color: var(--primary); margin-bottom: 10px;"></i>
-                <div style="font-weight: 600; margin-bottom: 4px;">Klik atau seret file ke sini</div>
-                <div style="font-size: 0.8rem; color: var(--text-sec); margin-bottom: 12px;">Format kolom: nama_tamu, instansi, kategori, nomor_wa</div>
+                <i class="fas fa-cloud-upload-alt" style="font-size: 36px; color: #0284c7; margin-bottom: 8px;"></i>
+                <div style="font-weight: bold; font-size: 0.9rem; margin-bottom: 2px;">Klik atau seret file ke sini</div>
+                <div style="font-size: 0.78rem; color: #64748b; margin-bottom: 12px;">Format kolom: nama_tamu, instansi, kategori, nomor_wa</div>
                 <input type="file" id="fileInput" accept=".xlsx, .xls, .csv" style="display:none;">
-                <button class="btn btn-primary" type="button" onclick="document.getElementById('fileInput').click()">Pilih File</button>
+                <button class="btn btn-primary" type="button" onclick="document.getElementById('fileInput').click()">Pilih File Data Tamu</button>
             </div>
 
             <div style="margin-top: 12px; text-align: right;">
-                <a href="assets/template_tamu.csv" class="btn btn-outline" download style="font-size: 0.8rem; padding: 6px 12px;">
+                <a href="assets/template_tamu.csv" class="btn btn-outline" download style="font-size: 0.8rem; padding: 6px 12px; width: auto; display: inline-flex;">
                     <i class="fas fa-download"></i> Unduh Template CSV
                 </a>
             </div>
@@ -39,9 +38,9 @@
 
         <!-- Table Card -->
         <div class="card" id="tableSection" style="display:none;">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 14px;">
-                <h2 style="margin:0;"><i class="fas fa-users" style="color: var(--primary);"></i> Daftar Tamu (<span id="totalCount">0</span>)</h2>
-                <input type="text" id="searchInput" class="form-control" placeholder="Cari tamu..." style="width: 240px; padding: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+                <h2 class="card-title" style="margin:0;"><i class="fas fa-users"></i> Daftar Tamu (<span id="totalCount">0</span>)</h2>
+                <input type="text" id="searchInput" class="form-control" placeholder="Cari nama, instansi..." style="width: 200px;">
             </div>
             <div class="table-responsive">
                 <table>

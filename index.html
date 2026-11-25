@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Digital — Edu Fair 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Undangan Digital — Edu Fair & Career Expo 2026</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -14,22 +13,21 @@
     <header>
         <h1>EDU FAIR & CAREER EXPO 2026</h1>
         <p>SMKN 6 Kota Tangerang Selatan</p>
-
     </header>
 
-    <div class="container" style="max-width: 800px;">
+    <div class="container">
         <!-- Hero Card -->
-        <div class="card" style="text-align: center; padding: 30px 20px;">
-            <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-sec); text-transform: uppercase; margin-bottom: 6px;">Kepada Yth. Bapak/Ibu / Pimpinan</div>
-            <h2 id="guestName" style="font-size: 1.6rem; color: var(--primary-dark); justify-content: center; margin-bottom: 4px;">Bapak/Ibu Pimpinan Tamu</h2>
-            <div id="guestInstansi" style="font-size: 1rem; font-weight: 600; margin-bottom: 14px;">Mitra Instansi / Perusahaan</div>
+        <div class="card">
+            <span class="guest-label">Kepada Yth. Bapak/Ibu / Pimpinan</span>
+            <span class="guest-name" id="guestName">Bapak/Ibu Pimpinan Tamu</span>
+            <span class="guest-instansi" id="guestInstansi">Mitra Instansi / Perusahaan</span>
             
-            <p style="font-style: italic; color: var(--text-sec); font-size: 0.9rem; margin-bottom: 16px;">
+            <p class="event-tagline">
                 "Connecting Competence to Future: Bekerja, Melanjutkan, Berwirausaha"
             </p>
-            <hr style="border:none; border-top:1px solid var(--border); margin: 20px 0;">
-            <p style="font-size: 0.9rem; line-height: 1.7; text-align: left; margin-bottom: 20px;">
-                Assalamu'alaikum Wr. Wb. Kami mengundang Bapak/Ibu pimpinan instansi untuk hadir dalam ajang pameran tahunan SMKN 6 Kota Tangerang Selatan. Merupakan suatu kehormatan bagi kami apabila Bapak/Ibu berkenan hadir.
+            <hr class="divider">
+            <p class="welcome-text">
+                Assalamu'alaikum Wr. Wb. Dengan hormat, kami mengundang Bapak/Ibu pimpinan instansi/mitra untuk hadir dan berpartisipasi dalam ajang pameran tahunan SMKN 6 Kota Tangerang Selatan. Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu berkenan hadir memenuhi undangan ini.
             </p>
 
             <!-- Countdown -->
@@ -42,55 +40,55 @@
         </div>
 
         <!-- Details Grid -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 20px;">
-            <div class="card" style="text-align: center; padding: 16px; margin:0;">
-                <i class="fas fa-calendar-alt" style="font-size: 24px; color: var(--primary); margin-bottom: 6px;"></i>
-                <h4 style="font-size: 0.8rem; color: var(--text-sec); text-transform: uppercase;">Hari & Tanggal</h4>
-                <p style="font-size: 0.9rem; font-weight: 700;">Rabu, 25 November 2026</p>
+        <div class="details-grid">
+            <div class="detail-card">
+                <i class="fas fa-calendar-alt"></i>
+                <h4>Hari & Tanggal</h4>
+                <p>Rabu, 25 Nov 2026</p>
             </div>
-            <div class="card" style="text-align: center; padding: 16px; margin:0;">
-                <i class="fas fa-clock" style="font-size: 24px; color: var(--primary); margin-bottom: 6px;"></i>
-                <h4 style="font-size: 0.8rem; color: var(--text-sec); text-transform: uppercase;">Waktu</h4>
-                <p style="font-size: 0.9rem; font-weight: 700;">07.00 – 14.00 WIB</p>
+            <div class="detail-card">
+                <i class="fas fa-clock"></i>
+                <h4>Waktu</h4>
+                <p>07.00 – 14.00 WIB</p>
             </div>
-            <div class="card" style="text-align: center; padding: 16px; margin:0;">
-                <i class="fas fa-map-marker-alt" style="font-size: 24px; color: var(--primary); margin-bottom: 6px;"></i>
-                <h4 style="font-size: 0.8rem; color: var(--text-sec); text-transform: uppercase;">Lokasi</h4>
-                <p style="font-size: 0.9rem; font-weight: 700;">SMKN 6 Kota Tangsel</p>
+            <div class="detail-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h4>Lokasi</h4>
+                <p>SMKN 6 Kota Tangsel</p>
             </div>
         </div>
 
         <!-- Maps Card -->
         <div class="card">
-            <h2><i class="fas fa-map-marked-alt" style="color: var(--primary);"></i> Peta Lokasi</h2>
-            <div style="width: 100%; height: 260px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 12px;">
-                <iframe width="100%" height="100%" style="border:0;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.867954546416!2d106.698!3d-6.327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTknMzcuMiJTIDEwNsKwNDEnNTIuOCJF!5e0!3m2!1sid!2sid!4v1650000000000!5m2!1sid!2sid" loading="lazy"></iframe>
+            <h2 class="card-title"><i class="fas fa-map-marked-alt"></i> Peta Lokasi Acara</h2>
+            <div class="map-container">
+                <iframe src="https://maps.google.com/maps?q=SMKN+6+Kota+Tangerang+Selatan&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
             </div>
-            <a href="https://maps.google.com/?q=SMKN+6+Kota+Tangerang+Selatan" target="_blank" class="btn btn-primary" style="width: 100%;">
-                <i class="fas fa-directions"></i> Buka Google Maps
+            <a href="https://maps.google.com/?q=SMKN+6+Kota+Tangerang+Selatan" target="_blank" class="btn btn-primary">
+                <i class="fas fa-directions"></i> Buka Petunjuk Arah (Google Maps)
             </a>
         </div>
 
         <!-- RSVP Card -->
         <div class="card" id="rsvpSection">
-            <h2><i class="fas fa-clipboard-check" style="color: var(--amber);"></i> Konfirmasi Kehadiran (RSVP)</h2>
-            <p style="font-size: 0.85rem; color: var(--text-sec); margin-bottom: 16px;">Mohon konfirmasi kehadiran Anda melalui formulir di bawah ini.</p>
+            <h2 class="card-title"><i class="fas fa-clipboard-check"></i> Konfirmasi Kehadiran (RSVP)</h2>
+            <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 12px;">Mohon konfirmasi kehadiran Anda melalui formulir di bawah ini.</p>
 
             <form id="rsvpForm">
                 <div class="form-group">
-                    <label class="form-label">Nama Lengkap *</label>
-                    <input type="text" id="inputNama" class="form-control" required>
+                    <label class="form-label">Nama Lengkap & Gelar *</label>
+                    <input type="text" id="inputNama" class="form-control" required placeholder="Nama lengkap...">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Asal Instansi *</label>
-                    <input type="text" id="inputInstansi" class="form-control" required>
+                    <label class="form-label">Asal Instansi / Perusahaan *</label>
+                    <input type="text" id="inputInstansi" class="form-control" required placeholder="Nama instansi...">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Kategori Tamu *</label>
                     <select id="inputKategori" class="form-control" required>
                         <option value="Perusahaan">Perusahaan / Mitra</option>
-                        <option value="Perguruan Tinggi">Perguruan Tinggi</option>
-                        <option value="Pemerintahan">Pemerintahan</option>
+                        <option value="Perguruan Tinggi">Perguruan Tinggi / Kampus</option>
+                        <option value="Pemerintahan">Pemerintahan / Dinas</option>
                         <option value="UMKM/Wirausaha">UMKM / Wirausaha</option>
                         <option value="Lainnya">Lainnya</option>
                     </select>
@@ -108,14 +106,14 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Jumlah Hadir</label>
+                    <label class="form-label">Jumlah Perwakilan Hadir</label>
                     <input type="number" id="inputJumlah" class="form-control" min="1" value="1">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Pesan / Ucapan (Opsional)</label>
-                    <textarea id="inputPesan" class="form-control" placeholder="Tuliskan ucapan..."></textarea>
+                    <textarea id="inputPesan" class="form-control" placeholder="Tuliskan ucapan atau catatan untuk panitia..."></textarea>
                 </div>
-                <button type="submit" class="btn btn-amber" id="submitBtn" style="width: 100%; padding: 12px;">
+                <button type="submit" class="btn btn-amber" id="submitBtn" style="margin-top: 6px;">
                     <i class="fas fa-paper-plane"></i> Konfirmasi Kehadiran
                 </button>
             </form>
